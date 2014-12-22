@@ -3,11 +3,17 @@
 namespace Devfactory\Block;
 
 class Block {
+  
   /**
-   * The image filename
+   * The block name
    *
    * @var string
    **/
   protected $block_name;
+
+
+  public function get() {
+
+  }
 
 }
