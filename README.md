@@ -1,10 +1,10 @@
 #Block
 
-This package allows you to create block and place predefined presets, and store them in your Laravel public folder to serve them up without generating them on each page load.
+This package allows you to create block and choose the position of the block where you need it.
 
 ## Installation
 
-Using Composer, edit your `composer.json` file to require `devfactory/imagecache`.
+Using Composer, edit your `composer.json` file to require `devfactory/block`.
 
   "require": {
     "devfactory/block": "dev-master"
