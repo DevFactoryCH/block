@@ -6,6 +6,11 @@
   </div>
 
   <div class="form-group">
+   {{ Form::label('id', 'block::block.block_id') }}
+   {{ Form::text('id', NULL) }}
+  </div>
+
+  <div class="form-group">
     {{ Form::label('body', 'block::block.body') }}
     {{ Form::textarea('body') }}
   </div>

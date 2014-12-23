@@ -2,6 +2,8 @@
 
 namespace Devfactory\Block;
 
+use Devfactory\Block\Models\Block as BlockModel;
+
 class Block {
   
   /**
@@ -12,8 +14,14 @@ class Block {
   protected $block_name;
 
 
-  public function get() {
+  public function get($block_name = '') {
+    $block = BlockModel::where('title', $block_name)->first();
 
+    if ($block) {
+      return $block->body;
+    }
+
+    return FALSE;
   }
 
 }

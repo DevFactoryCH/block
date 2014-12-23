@@ -6,6 +6,8 @@ use View;
 use Input;
 use Redirect;
 
+use Devfactory\Block\Models\Block;
+
 class BlockController extends \BaseController {
 
   /**
@@ -15,7 +17,9 @@ class BlockController extends \BaseController {
    */
   public function index()
   {
-    //
+    $blocks = Block::all();
+
+    return View::make('block::index', compact('blocks'));
   }
 
 
@@ -37,7 +41,13 @@ class BlockController extends \BaseController {
    * @return Response
    */
   public function store()
-  { 
+  {
+    $block = new Block();
+    $block->title = Input::get('title');
+    $block->body = Input::get('body');
+    $block->status = TRUE;
+    $block->save();
+
     return Redirect::route('block.index');
   }
 
