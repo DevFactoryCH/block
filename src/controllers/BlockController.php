@@ -2,6 +2,10 @@
 
 namespace Devfactory\Block\Controllers;
 
+use View;
+use Input;
+use Redirect;
+
 class BlockController extends \BaseController {
 
   /**
@@ -22,7 +26,8 @@ class BlockController extends \BaseController {
    */
   public function create()
   {
-    //
+
+    return View::make('block::create');
   }
 
 
@@ -32,8 +37,8 @@ class BlockController extends \BaseController {
    * @return Response
    */
   public function store()
-  {
-    //
+  { 
+    return Redirect::route('block.index');
   }
 
 
