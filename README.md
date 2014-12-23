@@ -28,18 +28,10 @@ Run the migration to create the DB table:
 
 ## Usage
 
-Then to save a media, in the method that handles your form submission you just need to pass the File object to `saveMedia()`:
+You just need to create a block then you can call the block content with the block facade like this
 
 ```php
-public function upload() {
-  $user = User::firstOrCreate(['id' => 1]);
-
-  if (Input::hasFile('image')) {
-    $user->saveMedia(Input::file('image'));
-  }
-
-  return Redirect::route('route');
-}
+{{ Block::get('block_title') }}
 ```
 
 
