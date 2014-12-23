@@ -16,6 +16,7 @@ class BlockServiceProvider extends ServiceProvider {
   public function boot()
   {
     $this->package('devfactory/block', 'block', __DIR__);
+    include __DIR__ . '/routes.php';
   }
   /**
    * Register the service provider.
