@@ -20,10 +20,7 @@ Then in your `app/config/app.php` file register the following service providers:
 
 And the Facade:
 
-    'Block'      => 'Devfactory\Block\Facades\ImagecacheFacade',
+    'Block'      => 'Devfactory\Block\Facades\BlockFacade',
 
-Publish the config:
-
-    php artisan config:publish devfactory/block
 
 
