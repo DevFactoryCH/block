@@ -6,6 +6,7 @@ use View;
 use Input;
 use Redirect;
 use Validator;
+use Config;
 
 use Devfactory\Block\Models\Block;
 
