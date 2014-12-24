@@ -10,7 +10,7 @@
 
         <div class="box-body">
 
-          {{ Form::open(array('route' => array('block.update', $block->id), 'method' => 'PUT')) }}
+          {{ Form::open(array('route' => array($prefix . 'block.update', $block->id), 'method' => 'PUT')) }}
 
             <div class="form-group">
               {{ Form::label('title', trans('block::block.title')) }}
