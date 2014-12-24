@@ -3,7 +3,7 @@
 @section('content')
 
   <p>
-    <a href="" class="btn btn-primary">
+    <a href="{{ route('block.create') }}" class="btn btn-primary">
       @lang('block::block.add')
     </a>
   </p>
