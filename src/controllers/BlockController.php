@@ -13,7 +13,7 @@ class BlockController extends \BaseController {
 
   protected $route_prefix;
 
-  public function __construct(Vocabulary $vocabulary) {
+  public function __construct() {
     $this->route_prefix = rtrim(Config::get('block::route_prefix'), '.') . '.';
 
     View::composer('block::*', 'Devfactory\Block\Composers\BlockComposer');
