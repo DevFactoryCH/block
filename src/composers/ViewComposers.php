@@ -11,6 +11,6 @@ class BlockComposer {
     $prefix = rtrim(Config::get('block::route_prefix'), '.') . '.';
     
 
-    $view->with(['prefix' => $prefix, 'layout' => $layout]);
+    $view->with(['prefix' => $prefix]);
   }
 }
