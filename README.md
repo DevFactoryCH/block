@@ -22,6 +22,10 @@ And the Facade:
 
     'Block'      => 'Devfactory\Block\Facades\BlockFacade',
 
+If you want you can publish the config files if you want to change them
+
+    php artisan config:publish devfactory/taxonomy
+
 Run the migration to create the DB table:
 
     php artisan migrate --package=devfactory/block
