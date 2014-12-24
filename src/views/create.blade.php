@@ -10,7 +10,7 @@
 
         <div class="box-body">
 
-          {{ Form::open(array('route' => 'block.store')) }}
+          {{ Form::open(array('route' => $prefix . 'block.store')) }}
 
             <div class="form-group">
               {{ Form::label('title', trans('block::block.title')) }}

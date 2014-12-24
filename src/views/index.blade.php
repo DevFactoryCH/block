@@ -3,7 +3,7 @@
 @section('content')
 
   <p>
-    <a href="{{ route('block.create') }}" class="btn btn-primary">
+    <a href="{{ route($prefix . 'block.create') }}" class="btn btn-primary">
       @lang('block::block.add')
     </a>
   </p>
@@ -24,10 +24,10 @@
               <tr>
                 <td>{{ $block->title }}</td>
                 <td class="text-right ">
-                  {{ Form::open(array('route' => array('block.destroy', $block->id), 'method' => 'DELETE', 'class' => 'pull-right')) }}
+                  {{ Form::open(array('route' => array($prefix . 'block.destroy', $block->id), 'method' => 'DELETE', 'class' => 'pull-right')) }}
                     {{ Form::button(trans('block::block.delete'), array('class' => 'btn btn-xs btn-danger', 'type' => 'submit')) }}
                   {{ Form::close() }}
-                  {{ Form::open(array('route' => array('block.edit', $block->id), 'method' => 'GET', 'class' => 'pull-right', 'style' => 'margin-right:5px')) }}
+                  {{ Form::open(array('route' => array($prefix . 'block.edit', $block->id), 'method' => 'GET', 'class' => 'pull-right', 'style' => 'margin-right:5px')) }}
                     {{ Form::button(trans('block::block.edit'), array('class' => 'btn btn-xs btn-primary', 'type' => 'submit')) }}
                   {{ Form::close() }}
                 </td>
