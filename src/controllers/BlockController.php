@@ -5,6 +5,7 @@ namespace Devfactory\Block\Controllers;
 use View;
 use Input;
 use Redirect;
+use Validator;
 
 use Devfactory\Block\Models\Block;
 
@@ -42,8 +43,13 @@ class BlockController extends \BaseController {
    */
   public function store()
   {
+    $validator = Validator::make(Input::All(), Block::$rules);
+    if ($validator->fails()) {
+      return Redirect::back()->withInput()->withErrors($validator);
+    }
+
     $block = new Block();
-    $block->title = Input::get('title');
+    $block->title = strtolower(Input::get('title'));
     $block->body = Input::get('body');
     $block->status = TRUE;
     $block->save();
@@ -72,7 +78,9 @@ class BlockController extends \BaseController {
    */
   public function edit($id)
   {
-    //
+    $block = Block::find($id);
+
+    return View::make('block::edit', compact('block'));
   }
 
 
@@ -84,7 +92,23 @@ class BlockController extends \BaseController {
    */
   public function update($id)
   {
-    //
+    $rules = array(
+      'title' => 'required|alpha_dash|unique:blocks,title,' . $id,
+      'body' => 'required',
+    );
+
+    $validator = Validator::make(Input::All(), $rules);
+    if ($validator->fails()) {
+      return Redirect::back()->withInput()->withErrors($validator);
+    }
+
+    $block = Block::find($id);
+    $block->title = strtolower(Input::get('title'));
+    $block->body = Input::get('body');
+    $block->status = TRUE;
+    $block->save();
+
+    return Redirect::route('block.index');
   }
 
 
@@ -96,7 +120,10 @@ class BlockController extends \BaseController {
    */
   public function destroy($id)
   {
-    //
+    $block = Block::find($id);
+    $block->delete();
+
+    return Redirect::back();
   }
 
 
