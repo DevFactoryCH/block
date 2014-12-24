@@ -30,8 +30,6 @@
                   {{ Form::open(array('route' => array('block.edit', $block->id), 'method' => 'GET', 'class' => 'pull-right', 'style' => 'margin-right:5px')) }}
                     {{ Form::button(trans('block::block.edit'), array('class' => 'btn btn-xs btn-primary', 'type' => 'submit')) }}
                   {{ Form::close() }}
-
-
                 </td>
               </tr>
             @endforeach
