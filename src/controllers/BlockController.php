@@ -11,6 +11,14 @@ use Devfactory\Block\Models\Block;
 
 class BlockController extends \BaseController {
 
+  protected $route_prefix;
+
+  public function __construct(Vocabulary $vocabulary) {
+    $this->route_prefix = rtrim(Config::get('block::route_prefix'), '.') . '.';
+
+    View::composer('block::*', 'Devfactory\Block\Composers\BlockComposer');
+  }
+
   /**
    * Display a listing of the resource.
    *
@@ -54,7 +62,7 @@ class BlockController extends \BaseController {
     $block->status = TRUE;
     $block->save();
 
-    return Redirect::route('block.index');
+    return Redirect::route($this->route_prefix . 'block.index');
   }
 
 
@@ -108,7 +116,7 @@ class BlockController extends \BaseController {
     $block->status = TRUE;
     $block->save();
 
-    return Redirect::route('block.index');
+    return Redirect::route($this->route_prefix . 'block.index');
   }
 
 
