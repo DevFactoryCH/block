@@ -24,7 +24,7 @@ And the Facade:
 
 If you want you can publish the config files if you want to change them
 
-    php artisan config:publish devfactory/taxonomy
+    php artisan config:publish devfactory/block
 
 Run the migration to create the DB table:
 
