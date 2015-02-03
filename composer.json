@@ -1,15 +1,17 @@
 {
   "name": "devfactory/block",
   "description": "Block for your website",
+  "keywords": ["Laravel 4", "Laravel", "Block"],
+  "license": "MIT",
   "authors": [
     {
-      "name": "Greg Marineau",
-      "email": "greg.marineau@devfactory.ch"
+      "name": "Alcindo Da Costa",
+      "email": "alcindo.dacosta@devfactory.ch"
     }
   ],
   "require": {
     "php": ">=5.4.0",
-    "illuminate/support": "4.1.*"
+    "illuminate/support": "4.*"
   },
   "autoload": {
     "classmap": [

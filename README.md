@@ -7,7 +7,7 @@ This package allows you to create block and choose the position of the block whe
 Using Composer, edit your `composer.json` file to require `devfactory/block`.
 
     "require": {
-      "devfactory/block": "dev-master"
+      "devfactory/block": "2.0.*"
     }
 
 Then from the terminal run
@@ -26,16 +26,64 @@ If you want you can publish the config files if you want to change them
 
     php artisan config:publish devfactory/block
 
+```php
+<?php
+
+return array(
+
+  /*
+  |--------------------------------------------------------------------------
+  | Block route prefix
+  |--------------------------------------------------------------------------
+  |
+  | You can use this param to set the prefix before the routes
+  |
+  */
+  'route_prefix' => 'admin',
+
+  /*
+  |--------------------------------------------------------------------------
+  | Block filter before
+  |--------------------------------------------------------------------------
+  |
+  | You can set the filter who will be used to display the page
+  |
+  */
+  'filter_before' => 'admin-auth',
+
+  /*
+  |--------------------------------------------------------------------------
+  | Block regions
+  |--------------------------------------------------------------------------
+  |
+  | The default regions
+  |
+  */
+  'regions' => array(
+    'header' => 'Header',
+    'sidebar_left' => 'Sidebar Left',
+    'content' => 'Content',
+    'sidebar_right' => 'Sidebar Right',
+    'footer' => 'Footer',
+  ),
+
+);
+```
+
 Run the migration to create the DB table:
 
-    php artisan migrate --package=devfactory/block
+```php
+php artisan migrate --package=devfactory/block
+```
 
 ## Usage
 
-You just need to create a block then you can call the block content with the block facade like this
+You just need to setup somes regions in your configuration files, and after to use the facade in the blade
 
 ```php
-{{ Block::get('block_title') }}
+{{ Block::region('header') }}
+{{ Block::region('sidebar_left') }}
+{{ Block::region('content') }}
+{{ Block::region('sidebar_right') }}
+{{ Block::region('footer') }}
 ```
-
-
