@@ -7,6 +7,7 @@ use Input;
 use Redirect;
 use Validator;
 use Config;
+use Response;
 
 use Devfactory\Block\Models\Block;
 
@@ -27,9 +28,10 @@ class BlockController extends \BaseController {
    */
   public function index()
   {
-    $blocks = Block::all();
+    $blocks_disabled = Block::where('region', '=', '')->orderby('weight', 'ASC')->get();
+    $regions = Config::get('block::regions');
 
-    return View::make('block::index', compact('blocks'));
+    return View::make('block::index', compact('blocks_disabled', 'regions'));
   }
 
 
@@ -135,5 +137,32 @@ class BlockController extends \BaseController {
     return Redirect::back();
   }
 
+  public function order($region) {
+    $inputs = Input::all();
+
+    if(!isset($inputs['block'])) {
+      return Response::make('no block found');
+    }
+
+    foreach ($inputs['block'] as $weight => $id){
+      if(!$id) {
+        continue;
+      }
+      $block = Block::find($id);
+
+      if(!$block) {
+        continue;
+      }
+
+      if($region == 'disabled'){
+        $block->region = null;
+      }else{
+        $block->region = $region;
+      }
+      $block->weight = $weight;
+      $block->save();
+    }
+    return Response::make('Updated');
+  }
 
 }

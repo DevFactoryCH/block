@@ -7,4 +7,9 @@ Route::group(array('prefix' => $prefix, 'before' => $before), function() {
 
   Route::resource('block', 'Devfactory\Block\Controllers\BlockController');
 
+  Route::get('block/order/{region_id}', array(
+               'as' =>  'block.order',
+               'uses' => 'Devfactory\Block\Controllers\BlockController@order'
+             ));
+
 });

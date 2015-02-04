@@ -1,7 +1,7 @@
 <?php
 
 return array(
-  'title' => 'Titre',
+  'title' => 'Blocks',
   'body' => 'Body',
   'add' => 'Add',
   'delete' => 'Delete',
