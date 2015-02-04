@@ -28,7 +28,7 @@ class BlockController extends \BaseController {
    */
   public function index()
   {
-    $blocks_disabled = Block::where('region', '=', '')->orderby('weight', 'ASC')->get();
+    $blocks_disabled = Block::where('region', '=', null)->orderby('weight', 'ASC')->get();
     $regions = Config::get('block::regions');
 
     return View::make('block::index', compact('blocks_disabled', 'regions'));
@@ -42,8 +42,8 @@ class BlockController extends \BaseController {
    */
   public function create()
   {
-
-    return View::make('block::create');
+    $regions = array_merge(array('<none>'), Config::get('block::regions'));
+    return View::make('block::create', compact('regions'));
   }
 
 
@@ -62,6 +62,9 @@ class BlockController extends \BaseController {
     $block = new Block();
     $block->title = strtolower(Input::get('title'));
     $block->body = Input::get('body');
+    $block->region = (Input::get('region')) ? Input::get('region') : null;
+    $block->pages = Input::get('pages');
+    $block->format = Input::get('format');
     $block->status = TRUE;
     $block->save();
 
@@ -90,8 +93,9 @@ class BlockController extends \BaseController {
   public function edit($id)
   {
     $block = Block::find($id);
+    $regions = array_merge(array('<none>'), Config::get('block::regions'));
 
-    return View::make('block::edit', compact('block'));
+    return View::make('block::edit', compact('block', 'regions'));
   }
 
 
@@ -104,7 +108,7 @@ class BlockController extends \BaseController {
   public function update($id)
   {
     $rules = array(
-      'title' => 'required|alpha_dash|unique:blocks,title,' . $id,
+      'title' => 'required|unique:blocks,title,' . $id,
       'body' => 'required',
     );
 
@@ -116,6 +120,9 @@ class BlockController extends \BaseController {
     $block = Block::find($id);
     $block->title = strtolower(Input::get('title'));
     $block->body = Input::get('body');
+    $block->pages = Input::get('pages');
+    $block->region = (Input::get('region')) ? Input::get('region') : null;
+    $block->format = Input::get('format');
     $block->status = TRUE;
     $block->save();
 

@@ -72,8 +72,13 @@ return array(
 
 Run the migration to create the DB table:
 
-```php
+```
 php artisan migrate --package=devfactory/block
+```
+
+Publish the assets
+```
+php artisan asset:publish devfactory/block
 ```
 
 ## Usage

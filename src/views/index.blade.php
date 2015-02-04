@@ -14,10 +14,6 @@
       <div class="box box-primary">
         <div class="box-body">
 
-          {{ Lang::get('block::block.title') }}
-          {{ Lang::get('block::block.region') }}
-          {{ Lang::get('block::block.action') }}
-
           @foreach ($regions as $id => $region)
             <h3>{{ $region }}</h3>
             <?php
@@ -39,7 +35,7 @@
                   {{ Form::close() }}
                 </li>
                 @empty
-                <h4 class="no-block">{{ Lang::get('block::block.empty') }}</h4>
+                <li class="ui-state-disabled no-block"><h4>{{ Lang::get('block::block.empty') }}</h4></li>
               @endforelse
             </ul>
           @endforeach
@@ -64,7 +60,7 @@
                 {{ Form::close() }}
               </li>
               @empty
-              <h4 class="no-block">{{ Lang::get('block::block.empty') }}</h4>
+              <li class="ui-state-disabled no-block"><h4>{{ Lang::get('block::block.empty') }}</h4></li>
             @endforelse
           </ul>
         </div>
@@ -80,6 +76,7 @@
      jQuery("<?php echo implode(',', $ids); ?>").sortable({
        placeholder: "sort-highlight",
        connectWith: ".connectedSortable",
+       items: "li:not(.ui-state-disabled)",
        forcePlaceholderSize: true,
        zIndex: 999999,
        update: function( event, ui ) {
@@ -87,7 +84,7 @@
 
          // add new empty li or remove the no block 
          if(!data) {
-           $('#' + $(this).attr('id')).append('<h4 class="no-block">{{ Lang::get('block::block.empty') }}</h4>');
+           $('#' + $(this).attr('id')).append('<li class="ui-state-disabled no-block"><h4>{{ Lang::get('block::block.empty') }}</h4></li>');
          } else {
            $('#' + $(this).attr('id')).children('.no-block').remove();
          }

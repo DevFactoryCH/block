@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Request;
 
 class Block {
 
-  const  BLOCK_REGION_NONE          = 1;  //Denotes that a block is not enabled in any region and should not be shown.
   const  BLOCK_VISIBILITY_LISTED    = 2;  //Shows this block on only the listed pages.
   const  BLOCK_VISIBILITY_NOTLISTED = 3;  //Shows this block on every page except the listed pages.
   const  BLOCK_VISIBILITY_PHP       = 4;  //Shows this block if the associated PHP code returns TRUE.
@@ -20,6 +19,31 @@ class Block {
    **/
   protected $block_name;
 
+  public function formats() {
+    return array(
+      3 => trans('block::block.not_listed'),
+      2 => trans('block::block.listed'),
+      4 => trans('block::block.php')
+    );
+  }
+
+  public function region($region) {
+    $blocks = BlockModel::where('region', '=', $region)->orderby('weight', 'ASC')->get();
+
+    $output = '';
+    foreach($blocks as $key => $block) {
+      if(!$this->show($block)) {
+        continue;
+      }
+
+      $output .= '<div class="content content-' . $region . ' clearfix">';
+      $output .= $block->body;
+      $output .= '</div>';
+    }
+
+    return $output;
+
+  }
 
   public function get($block_name = '')
   {
@@ -35,16 +59,13 @@ class Block {
   public function show(BlockModel $block)
   {
     switch($block->format) {
-    case BLOCK_REGION_NONE:
-      return false;
-      break;
-    case BLOCK_VISIBILITY_LISTED:
+    case self::BLOCK_VISIBILITY_LISTED:
       return $this->listed_page($block);
       break;
-    case BLOCK_VISIBILITY_NOTLISTED:
+    case self::BLOCK_VISIBILITY_NOTLISTED:
       return ($this->listed_page($block)) ? false : true;
       break;
-    case BLOCK_VISIBILITY_PHP:
+    case self::BLOCK_VISIBILITY_PHP:
       return ($this->block_eval($block)) ? true : false;
       break;
     }
@@ -60,7 +81,7 @@ class Block {
   protected function block_eval(BlockModel $block)
   {
     ob_start();
-    print eval('?>' . $code);
+    print eval('?>' . $block->pages);
     $output = ob_get_contents();
     ob_end_clean();
 
@@ -76,9 +97,9 @@ class Block {
    */
   protected function listed_page(BlockModel $block)
   {
-    $arr_listed = explode ("\n", $listed);
+    $arr_listed = explode ("\n", $block->pages);
 
-    if (in_array(Request::url(), $arr_listed)) {
+    if (in_array(Request::path(), $arr_listed)) {
       return true;
     }
 

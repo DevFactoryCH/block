@@ -15,13 +15,13 @@ class CreateBlocksTable extends Migration {
     Schema::create('blocks', function($table)
     {
       $table->increments('id');
-      $table->string('region');
+      $table->string('region')->nullable();
       $table->string('title');
       $table->text('body');
       $table->boolean('status');
       $table->integer('format');
       $table->integer('weight');
-      $table->text('pages');
+      $table->text('pages')->nullable();
       $table->timestamps();
     });
   }
