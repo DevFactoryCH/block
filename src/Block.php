@@ -51,7 +51,7 @@ class Block {
         continue;
       }
 
-      $output .= '<div class="content content-' . $region . ' clearfix">';
+      $output .= '<div class="content-block content-' . $region . ' clearfix">';
       $output .= $block->body;
       $output .= '</div>';
     }
