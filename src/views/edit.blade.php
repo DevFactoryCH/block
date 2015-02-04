@@ -30,16 +30,33 @@
             {{ $errors->first('body', '<span class="text-danger">:message</span>') }}
           </div>
 
-          <div class="form-group">
-            {{ Form::label('format', trans('block::block.visibility')) }}
-            {{ Form::select('format', Block::formats(), $block->format, array('class' => 'form-control')) }}
-            {{ $errors->first('format', '<span class="text-danger">:message</span>') }}
-          </div>
+          <div class="box-group" id="accordion">
+            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+            <div class="panel box box-primary">
+              <div class="box-header">
+                <h4 class="box-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">
+                    {{ Lang::get('block::block.visibility') }}
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                <div class="box-body">
 
-          <div class="form-group">
-            {{ Form::label('pages', trans('block::block.page')) }}
-            {{ Form::textarea('pages', $block->pages, array('class' => 'form-control')) }}
-            {{ $errors->first('pages', '<span class="text-danger">:message</span>') }}
+                  <div class="form-group">
+                    {{ Form::label('pages', trans('block::block.page')) }}
+                    {{ Form::textarea('pages', $block->pages, array('class' => 'form-control')) }}
+                    {{ $errors->first('pages', '<span class="text-danger">:message</span>') }}
+                  </div>
+
+                  <div class="form-group">
+                    {{ Form::label('format', trans('block::block.visibility')) }}
+                    {{ Form::select('format', Block::formats(), $block->format, array('class' => 'form-control')) }}
+                    {{ $errors->first('format', '<span class="text-danger">:message</span>') }}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {{ Form::submit(trans('block::block.edit'), array('class' => 'btn btn-primary')) }}
@@ -66,15 +83,15 @@
    jQuery(function() {
      // Summernote wysiwyg editor
      $('#body').summernote({
-         height: 150,
-         toolbar: [
-           ['style', ['bold', 'italic', 'underline', 'clear']],
-           ['font', ['strikethrough']],
-           ['fontsize', ['fontsize']],
-           ['para', ['ul', 'ol', 'paragraph']],
-           ['insert', ['picture', 'link', 'video', 'codeview']]
-         ]
-       });
+       height: 150,
+       toolbar: [
+         ['style', ['bold', 'italic', 'underline', 'clear']],
+         ['font', ['strikethrough']],
+         ['fontsize', ['fontsize']],
+         ['para', ['ul', 'ol', 'paragraph']],
+         ['insert', ['link', 'video', 'codeview']]
+       ]
+     });
 
      $('.form_group').on('blur', '.note-editable', function() {
        $('.summernote').destroy();

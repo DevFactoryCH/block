@@ -5,7 +5,7 @@ return array(
   'body' => 'Body',
   'regions' => 'Regions',
   'page' => 'Pages',
-  'visibility' => 'Visibility',
+  'visibility' => 'Visibility settings',
   'listed' => 'Displed only on the listed page',
   'not_listed' => 'Displed only on the not listed page',
   'php' => 'Displed only on the php condition',

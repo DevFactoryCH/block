@@ -19,15 +19,30 @@ class Block {
    **/
   protected $block_name;
 
-  public function formats() {
+  /**
+   * Return the format available
+   *
+   *
+   * @return array
+   */
+  public function formats()
+  {
     return array(
-      3 => trans('block::block.not_listed'),
-      2 => trans('block::block.listed'),
-      4 => trans('block::block.php')
+      self::BLOCK_VISIBILITY_NOTLISTED => trans('block::block.not_listed'),
+      self::BLOCK_VISIBILITY_LISTED => trans('block::block.listed'),
+      self::BLOCK_VISIBILITY_PHP => trans('block::block.php')
     );
   }
 
-  public function region($region) {
+  /**
+   * Display the regions block
+   *
+   * @param region
+   *
+   * @return string
+   */
+  public function region($region)
+  {
     $blocks = BlockModel::where('region', '=', $region)->orderby('weight', 'ASC')->get();
 
     $output = '';
@@ -45,17 +60,11 @@ class Block {
 
   }
 
-  public function get($block_name = '')
-  {
-    $block = BlockModel::where('title', $block_name)->first();
-
-    if ($block && $this->show($block)) {
-      return $block->body;
-    }
-
-    return FALSE;
-  }
-
+  /**
+   * Check if the block is visible
+   *
+   * @return bool
+   */
   public function show(BlockModel $block)
   {
     switch($block->format) {
