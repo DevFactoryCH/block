@@ -1,7 +1,7 @@
 <?php
 
 $prefix = Config::get('block::route_prefix');
-$before = Config::get('gate::filter_before');
+$before = Config::get('block::filter_before');
 
 Route::group(array('prefix' => $prefix, 'before' => $before), function() {
 
