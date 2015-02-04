@@ -9,9 +9,10 @@ return array(
   'listed' => 'Displed only on the listed page',
   'not_listed' => 'Displed only on the not listed page',
   'php' => 'Displed only on the php condition',
-  'add' => 'Add',
+  'add' => 'Add a new block',
   'delete' => 'Delete',
   'edit' => 'Edit',
+  'update' => 'Save',
   'empty' => 'No block for this region',
   'disabled' => 'Disabled'
 );

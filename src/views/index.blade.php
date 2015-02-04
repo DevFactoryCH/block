@@ -35,7 +35,7 @@
                   {{ Form::close() }}
                 </li>
                 @empty
-                <li class="ui-state-disabled no-block"><h4>{{ Lang::get('block::block.empty') }}</h4></li>
+                <li class="ui-state-disabled no-block" style="background-color: #f0f7fd;border-color: #d0e3f0;"><h4>{{ Lang::get('block::block.empty') }}</h4></li>
               @endforelse
             </ul>
           @endforeach
@@ -60,7 +60,7 @@
                 {{ Form::close() }}
               </li>
               @empty
-              <li class="ui-state-disabled no-block"><h4>{{ Lang::get('block::block.empty') }}</h4></li>
+              <li class="ui-state-disabled no-block" style="background-color: #f0f7fd;border-color: #d0e3f0;"><h4>{{ Lang::get('block::block.empty') }}</h4></li>
             @endforelse
           </ul>
         </div>
@@ -84,7 +84,7 @@
 
          // add new empty li or remove the no block 
          if(!data) {
-           $('#' + $(this).attr('id')).append('<li class="ui-state-disabled no-block"><h4>{{ Lang::get('block::block.empty') }}</h4></li>');
+           $('#' + $(this).attr('id')).append('<li class="ui-state-disabled no-block" style="background-color: #f0f7fd;border-color: #d0e3f0;"><h4>{{ Lang::get('block::block.empty') }}</h4></li>');
          } else {
            $('#' + $(this).attr('id')).children('.no-block').remove();
          }

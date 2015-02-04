@@ -59,7 +59,7 @@
             </div>
           </div>
 
-          {{ Form::submit(trans('block::block.edit'), array('class' => 'btn btn-primary')) }}
+          {{ Form::submit(trans('block::block.update'), array('class' => 'btn btn-primary')) }}
 
           {{ Form::close() }}
 
