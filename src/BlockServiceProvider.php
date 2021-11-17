@@ -28,17 +28,34 @@ class BlockServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'block');
-
-        $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/block'),
-        ]);
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'block');
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'block');
 
-        $this->loadRoutesFrom(realpath(__DIR__ . '/routes.php'));
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../resources/lang' => resource_path('lang/vendor/block'),
+            ]);
+
+            $this->publishes([
+                __DIR__ . '/../config/config.php' => config_path('block.php'),
+            ], 'config');
+
+            $this->publishes([
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/block'),
+            ], 'views');
+
+            if (!class_exists('CreateBlocksTable')) {
+                    $this->publishes([
+                        __DIR__ . '/../database/migrations/create_blocks_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_blocks_table.php'),
+                    ], 'migrations');
+                }
+            }
+        }
     }
 
     /**
@@ -59,15 +76,5 @@ class BlockServiceProvider extends ServiceProvider
     protected function getConfigPath()
     {
         return config_path('block.php');
-    }
-
-    /**
-     * Publish the config file
-     *
-     * @param  string $configPath
-     */
-    protected function publishConfig($configPath)
-    {
-        $this->publishes([$configPath => config_path('block.php')], 'config');
     }
 }
