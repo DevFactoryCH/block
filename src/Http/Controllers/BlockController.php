@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 class BlockController extends Controller
 {
-    protected $route_prefix;
+    /**
+     * @var string
+     */
+    protected string $routePrefix;
 
     public function __construct()
     {
-        $this->route_prefix = rtrim(config('block::route_prefix'), '.') . '.';
+        $this->routePrefix = rtrim(config('block::route_prefix'), '.') . '.';
 
         view('block::*', 'Devfactory\Block\Composers\BlockComposer');
     }
@@ -54,7 +57,7 @@ class BlockController extends Controller
             'status' => $request->body,
         ]);
 
-        return redirect()->route($this->route_prefix . 'block.index');
+        return redirect()->route($this->routePrefix . 'block.index');
     }
 
     /**
@@ -104,7 +107,7 @@ class BlockController extends Controller
 
         ]);
 
-        return redirect()->route($this->route_prefix . 'block.index');
+        return redirect()->route($this->routePrefix . 'block.index');
     }
 
     /**
