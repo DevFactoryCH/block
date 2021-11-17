@@ -50,10 +50,9 @@ class BlockServiceProvider extends ServiceProvider
             ], 'views');
 
             if (!class_exists('CreateBlocksTable')) {
-                    $this->publishes([
-                        __DIR__ . '/../database/migrations/create_blocks_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_blocks_table.php'),
-                    ], 'migrations');
-                }
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/create_blocks_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_blocks_table.php'),
+                ], 'migrations');
             }
         }
     }
