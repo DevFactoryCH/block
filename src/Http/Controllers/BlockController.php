@@ -2,7 +2,6 @@
 
 namespace Devfactory\Block\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Devfactory\Block\Models\Block;
 use Illuminate\Http\Request;
 

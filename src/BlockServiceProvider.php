@@ -13,7 +13,7 @@ class BlockServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../config/block.php';
+        $configPath = __DIR__ . '/../config/config.php';
         $this->mergeConfigFrom($configPath, 'block');
 
         $this->app->bind('block', function($app) {
@@ -74,6 +74,6 @@ class BlockServiceProvider extends ServiceProvider
      */
     protected function getConfigPath()
     {
-        return config_path('block.php');
+        return config_path('config.php');
     }
 }
