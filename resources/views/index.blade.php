@@ -8,7 +8,6 @@
     </a>
   </p>
 
-
   <div class="row">
     <div class="col-sm-8">
       <div class="box box-primary">
@@ -24,11 +23,11 @@
               <tr>
                 <td>{{ $block->title }}</td>
                 <td class="text-right ">
-                  {{ Form::open(array('route' => array($prefix . 'block.destroy', $block->id), 'method' => 'DELETE', 'class' => 'pull-right')) }}
-                    {{ Form::button(trans('block::block.delete'), array('class' => 'btn btn-xs btn-danger', 'type' => 'submit')) }}
+                  {{ Form::open(['route' => [$prefix . 'block.destroy', $block->id], 'method' => 'DELETE', 'class' => 'pull-right']) }}
+                    {{ Form::button(__('block::block.delete'), ['class' => 'btn btn-xs btn-danger', 'type' => 'submit']) }}
                   {{ Form::close() }}
-                  {{ Form::open(array('route' => array($prefix . 'block.edit', $block->id), 'method' => 'GET', 'class' => 'pull-right', 'style' => 'margin-right:5px')) }}
-                    {{ Form::button(trans('block::block.edit'), array('class' => 'btn btn-xs btn-primary', 'type' => 'submit')) }}
+                  {{ Form::open(['route' => [$prefix . 'block.edit', $block->id], 'method' => 'GET', 'class' => 'pull-right', 'style' => 'margin-right: 5px']) }}
+                    {{ Form::button(__('block::block.edit'), ['class' => 'btn btn-xs btn-primary', 'type' => 'submit']) }}
                   {{ Form::close() }}
                 </td>
               </tr>
@@ -38,6 +37,5 @@
       </div>
     </div>
   </div>
-
 
 @stop

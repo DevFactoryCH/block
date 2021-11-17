@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 namespace Devfactory\Block\Facades;
 
-use Devfactory\Block\BlockBuilder;
+use Devfactory\Block\Block as BlockBuilder;
 use Illuminate\Support\Facades\Facade;
 
 class Block extends Facade
@@ -13,7 +13,7 @@ class Block extends Facade
      * @return string
      */
     protected static function getFacadeAccessor()
-    { 
+    {
         return BlockBuilder::class;
     }
 }
