@@ -1,22 +1,24 @@
 {
-  "name": "devfactory/block",
-  "description": "Block for your website",
-  "authors": [
-    {
-      "name": "Greg Marineau",
-      "email": "greg.marineau@devfactory.ch"
-    }
-  ],
-  "require": {
-    "php": ">=5.4.0"
-  },
-  "autoload": {
-    "classmap": [
-      "src/migrations"
+    "name": "devfactory/block",
+    "description": "Block for your website",
+    "authors": [
+        {
+            "name": "Greg Marineau",
+            "email": "greg.marineau@devfactory.ch"
+        }
     ],
-    "psr-4": {
-      "Devfactory\\Block\\": "src/"
-    }
-  },
-  "minimum-stability": "stable"
+    "require": {
+        "php": "^7.3|^8.0|^8.1",
+        "illuminate/database": "^7.0|^8.0",
+        "illuminate/support": "^7.0|^8.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-4": {
+            "Devfactory\\Block\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
 }

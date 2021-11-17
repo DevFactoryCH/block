@@ -2,15 +2,12 @@
 
 namespace Devfactory\Block\Composers;
 
-use Config;
+class BlockComposer
+{
+    public function compose($view) {
 
-class BlockComposer {
-  
-  public function compose($view) {
-    
-    $prefix = rtrim(Config::get('block::route_prefix'), '.') . '.';
-    
+        $prefix = rtrim(config('block::route_prefix'), '.') . '.';
 
-    $view->with(['prefix' => $prefix]);
-  }
+        $view->with(['prefix' => $prefix]);
+    }
 }

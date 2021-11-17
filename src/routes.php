@@ -1,9 +1,9 @@
 <?php
 
-$prefix = Config::get('block::route_prefix');
+use Devfactory\Block\Http\Controllers\BlockController;
 
-Route::group(array('prefix' => $prefix), function() {
+$prefix = config('block::route_prefix');
 
-  Route::resource('block', 'Devfactory\Block\Controllers\BlockController');
-
+Route::prefix($prefix)->group(function() {
+    Route::resource('block', BlockController::class);
 });
