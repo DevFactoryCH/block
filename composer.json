@@ -10,14 +10,12 @@
     "require": {
         "php": "^7.3|^8.0|^8.1",
         "illuminate/database": "^7.0|^8.0",
-        "illuminate/support": "^7.0|^8.0"
+        "illuminate/support": "^7.0|^8.0",
+        "laravelcollective/html": "^6.2"
     },
     "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
         "psr-4": {
-            "Devfactory\\Block\\": "src/"
+            "Devfactory\\Block\\": "src"
         }
     },
     "minimum-stability": "stable"

@@ -21,7 +21,7 @@ class CreateBlocksTable extends Migration
             $table->timestamps();
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

@@ -2,26 +2,24 @@
 
 namespace Devfactory\Block;
 
-use Devfactory\Block\Models\Block as BlockModel;
+use Devfactory\Block\Models\Block as ModelsBlock;
 
-class Block {
-  
-  /**
-   * The block name
-   *
-   * @var string
-   **/
-  protected $block_name;
+class Block
+{
+    /**
+     * @var string
+     */
+    protected $blockName;
 
+    public function get($blockName = '')
+    {
+        $block = ModelsBlock::where('title', $blockName)
+            ->first();
 
-  public function get($block_name = '') {
-    $block = BlockModel::where('title', $block_name)->first();
+        if ($block) {
+            return $block->body;
+        }
 
-    if ($block) {
-      return $block->body;
+        return false;
     }
-
-    return FALSE;
-  }
-
 }
