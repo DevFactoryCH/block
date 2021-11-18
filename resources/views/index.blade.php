@@ -24,7 +24,7 @@
               {{ Form::open(['route' => ['block.destroy', $block->id], 'method' => 'DELETE', 'class' => 'float-end']) }}
                 {{ Form::button(__('block::block.delete'), ['class' => 'btn btn-sm btn-danger', 'type' => 'submit']) }}
               {{ Form::close() }}
-              {{ Form::open(['route' => ['block.edit', $block->id], 'class' => 'float-end']) }}
+              {{ Form::open(['route' => ['block.edit', $block->id], 'method' => 'GET', 'class' => 'float-end']) }}
                 {{ Form::button(__('block::block.edit'), ['class' => 'btn btn-sm btn-primary me-2', 'type' => 'submit']) }}
               {{ Form::close() }}
             </td>
