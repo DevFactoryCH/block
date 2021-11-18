@@ -4,31 +4,42 @@ This package allows you to create block and choose the position of the block whe
 
 ## Installation
 
-Using Composer, edit your `composer.json` file to require `devfactory/block`.
+Using Composer to install the package.
 
-    "require": {
-      "devfactory/block": "dev-master"
-    }
-
-Then from the terminal run
-
-    composer update
+```bash
+composer require devfactory/block
+```
 
 Then in your `app/config/app.php` file register the following service providers:
+    Devfactory\Block\BlockServiceProvider::class,
 
-    'Devfactory\Block\BlockServiceProvider',
+```php
+// config/app.php
 
-And the Facade:
+'providers' => [
+    ...
+    Devfactory\Block\BlockServiceProvider::class,
+],
 
-    'Block'      => 'Devfactory\Block\Facades\BlockFacade',
+'aliases' => [
+    ...
+    'Block' => Devfactory\Block\Facades\Block::class,
+],
+```
 
-If you want you can publish the config files if you want to change them
+If you want you can publish the config, views and migration files if you want to change them
 
-    php artisan config:publish devfactory/block
+```bash
+php artisan vendor:publish --provider="Devfactory\Block\BlockServiceProvider" --tag="config"
+```
 
-Run the migration to create the DB table:
+```bash
+php artisan vendor:publish --provider="Devfactory\Block\BlockServiceProvider" --tag="views"
+```
 
-    php artisan migrate --package=devfactory/block
+```bash
+php artisan vendor:publish --provider="Devfactory\Block\BlockServiceProvider" --tag="migrations"
+```
 
 ## Usage
 
