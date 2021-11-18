@@ -3,19 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use Devfactory\Block\Http\Controllers\BlockController;
 
-$prefix = config('block::route_prefix');
+$prefix = config('block.route_prefix');
 
 Route::prefix($prefix)->middleware('web')->group(function() {
-    Route::get('block', [BlockController::class, 'index'])
+    Route::get('/', [BlockController::class, 'index'])
         ->name('block.index');
-    Route::get('create', [BlockController::class, 'store'])
+    Route::get('create', [BlockController::class, 'create'])
         ->name('block.create');
-    Route::post('block', [BlockController::class, 'store'])
+    Route::post('/', [BlockController::class, 'store'])
         ->name('block.store');
-    Route::get('edit/{id}', [BlockController::class, 'edit'])
+    Route::get('{id}/edit', [BlockController::class, 'edit'])
         ->name('block.edit');
-    Route::put('update/{id}', [BlockController::class, 'update'])
+    Route::put('{id}', [BlockController::class, 'update'])
         ->name('block.update');
-    Route::put('destroy/{id}', [BlockController::class, 'destroy'])
+    Route::delete('{id}', [BlockController::class, 'destroy'])
         ->name('block.destroy');
 });

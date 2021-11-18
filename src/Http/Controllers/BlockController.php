@@ -8,25 +8,15 @@ use Illuminate\Http\Request;
 class BlockController extends Controller
 {
     /**
-     * @var string
-     */
-    protected string $routePrefix;
-
-    public function __construct()
-    {
-        $this->routePrefix = rtrim(config('block::route_prefix'), '.') . '.';
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        $blocks = Block::all();
+        $blocks = Block::get();
 
-        view('block::index', compact('blocks'));
+        return view('block::index', compact('blocks'));
     }
 
     /**
@@ -48,13 +38,13 @@ class BlockController extends Controller
     {
         $this->validate($request, Block::$rules);
 
-        $block = Block::create([
+        Block::create([
             'title' => $request->title,
             'body' => $request->body,
-            'status' => $request->body,
+            'status' => true,
         ]);
 
-        return redirect()->route($this->routePrefix . 'block.index');
+        return redirect()->route('block.index');
     }
 
     /**
@@ -93,7 +83,7 @@ class BlockController extends Controller
 
         ]);
 
-        return redirect()->route($this->routePrefix . 'block.index');
+        return redirect()->route('block.index');
     }
 
     /**
