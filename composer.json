@@ -1,6 +1,7 @@
 {
     "name": "devfactory/block",
     "description": "Block for your website",
+    "license": "MIT",
     "authors": [
         {
             "name": "Greg Marineau",
