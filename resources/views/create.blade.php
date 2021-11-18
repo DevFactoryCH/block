@@ -6,7 +6,7 @@
     <div class="col-sm-8">
       <div class="box box-primary">
         <div class="box-body">
-          {{ Form::open(['route' => $prefix . 'block.store']) }}
+          {{ Form::open(['route' => 'block.store']) }}
             <div class="form-group">
               {{ Form::label('title', __('block::block.title')) }}
               {{ Form::text('title', null, ['class' =>'form-control']) }}

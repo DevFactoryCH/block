@@ -6,7 +6,7 @@
     <div class="col-sm-8">
       <div class="box box-primary">
         <div class="box-body">
-          {{ Form::open(['route' => [$prefix . 'block.update', $block->id], 'method' => 'PUT']) }}
+          {{ Form::open(['route' => ['block.update', $block->id], 'method' => 'PUT']) }}
             <div class="form-group">
               {{ Form::label('title', __('block::block.title')) }}
               {{ Form::text('title', $block->title, ['class' =>'form-control']) }}
