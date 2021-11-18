@@ -15,8 +15,6 @@ class BlockController extends Controller
     public function __construct()
     {
         $this->routePrefix = rtrim(config('block::route_prefix'), '.') . '.';
-
-        view('block::*', 'Devfactory\Block\Composers\BlockComposer');
     }
 
     /**

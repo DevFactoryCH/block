@@ -2,7 +2,9 @@
 
 namespace Devfactory\Block;
 
+use Devfactory\Block\View\Composers\BlockComposer;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class BlockServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,8 @@ class BlockServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer('*', BlockComposer::class);
+
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'block');
